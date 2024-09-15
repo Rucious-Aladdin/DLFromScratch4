@@ -47,8 +47,21 @@ class GridWorld:
     def render_q(self, q=None, print_value=True, savefig=True, filename='image.png'):
         renderer = render_helper.Renderer(self.reward_map, self.goal_state,
                                           self.wall_state)
-        renderer.render_q(q, print_value, savefig=savefig, filename='image.png')
+        renderer.render_q(q, print_value, savefig=savefig, filename=filename)
 
+    def step(self, action):
+        next_state = self.next_state(self.agent_space, action)
+        reward = self.reward(self.agent_space, action, next_state)
+        done = False
+        if next_state == self.goal_state:
+            done = True
+        self.agent_space = next_state
+        return next_state, reward, done
+
+    def reset(self):
+        self.agent_space = self.start_state
+        return self.agent_space
+    
     @property
     def height(self):
         return self.reward_map.shape[0]

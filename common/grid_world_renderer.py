@@ -82,7 +82,7 @@ class Renderer:
                         offset = offsets[action]
                         if state == self.goal_state:
                             continue
-                        ax.text(x+0.45+offset[0], ys-y-0.5+offset[1], arrow)
+                        ax.text(x+0.45+offset[0], ys-y-0.5+offset[1], arrow, fontsize=40)
 
                 if state == self.wall_state:
                     ax.add_patch(plt.Rectangle((x,ys-y-1), 1, 1, fc=(0.4, 0.4, 0.4, 1.)))
@@ -166,4 +166,4 @@ class Renderer:
                     probs = {0:0.0, 1:0.0, 2:0.0, 3:0.0}
                     probs[max_action] = 1
                     policy[state] = probs
-            self.render_v(None, policy)
+            self.render_v(None, policy, savefig=savefig, filename=f"{filename}_greedy_policy.png")
