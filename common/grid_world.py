@@ -40,6 +40,13 @@ class GridWorld:
         return self.reward_map[next_state]
     
     def render_v(self, v=None, policy=None, print_value=True, savefig=True, filename='image.png'):
+        """
+        v: value function
+        policy: policy
+        print_value: print value on the grid
+        savefig(bool): save the figure
+        filename(str): filename to save the figure
+        """
         renderer = render_helper.Renderer(self.reward_map, self.goal_state,
                                           self.wall_state)
         renderer.render_v(v, policy, print_value, savefig=savefig, filename=filename)
