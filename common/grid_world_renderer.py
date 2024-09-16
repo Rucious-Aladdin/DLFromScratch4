@@ -117,6 +117,7 @@ class Renderer:
                     state = (y, x)
                     r = self.reward_map[y, x]
                     if r != 0 and r is not None:
+                        r = "%.1f" % r
                         txt = 'R ' + str(r)
                         if state == self.goal_state:
                             txt = txt + ' (GOAL)'
